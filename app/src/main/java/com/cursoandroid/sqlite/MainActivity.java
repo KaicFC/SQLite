@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Recuperar dados
             String consulta = "SELECT nome, idade FROM pessoas " +
-                                "WHERE idade >=24";
+                                "WHERE idade BETWEEN  20 AND 30 ORDER BY nome ASC LIMIT 2";
 
             //Cursor percorre os dados
             Cursor cursor = bancoDados.rawQuery(consulta, null);
