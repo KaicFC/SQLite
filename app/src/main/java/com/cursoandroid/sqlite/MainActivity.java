@@ -27,10 +27,13 @@ public class MainActivity extends AppCompatActivity {
             bancoDados.execSQL("INSERT INTO pessoas(nome, idade) VALUES ('Morgana', 25)");
 
             //Recuperar dados
-            //Cursor percerre os dados
-             Cursor cursor = bancoDados.rawQuery("SELECT nome, idade FROM pessoas", null);
+            String consulta = "SELECT nome, idade FROM pessoas " +
+                                "WHERE idade >=24";
 
-             //Indices da tabela
+            //Cursor percorre os dados
+            Cursor cursor = bancoDados.rawQuery(consulta, null);
+
+            //Indices da tabela
             int indiceNome = cursor.getColumnIndex("nome");
             int indiceIdade = cursor.getColumnIndex("idade");
 
@@ -39,8 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
             //Mover o cursor
              while(cursor != null){
-                 Log.i("RESULTADO - nome", cursor.getString(indiceNome));
-                 Log.i("RESULTADO - idade", cursor.getString(indiceIdade));
+
+                String nome = cursor.getString(indiceNome);
+                String idade = cursor.getString(indiceIdade);
+
+                 Log.i("RESULTADO - nome ",  nome + "idade: " + idade);
                 cursor.moveToNext();
              }
 
